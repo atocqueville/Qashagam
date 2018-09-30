@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import dateFns from 'date-fns';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +15,10 @@ class Calendar extends React.Component {
     state = {
         currentMonth: new Date()
     };
+
+    componentWillEnter() {
+        console.log("la")
+    }
 
     renderHeader() {
         const dateFormat = 'MMMM YYYY';
@@ -116,19 +121,21 @@ class Calendar extends React.Component {
     render() {
         return(
             <Grid container direction='column' style={{ display: 'flex', flex: '0 1 auto' }}>
-                <Paper square>
-                    <Grid item style={{ display: 'flex', minHeight: '70px' }}>
-                        {this.renderHeader()}
-                    </Grid>
-                    <Divider />
-                    <Grid item style={{ display: 'flex', minHeight: '40px' }}>
-                        {this.renderDays()}
-                    </Grid>
-                    <Divider />
-                    <Grid item>
-                        {this.renderCells()}
-                    </Grid>
-                </Paper>
+                <TransitionGroup>
+                    <Paper square>
+                        <Grid item style={{ display: 'flex', minHeight: '70px' }}>
+                            {this.renderHeader()}
+                        </Grid>
+                        <Divider />
+                        <Grid item style={{ display: 'flex', minHeight: '40px' }}>
+                            {this.renderDays()}
+                        </Grid>
+                        <Divider />
+                        <Grid item>
+                            {this.renderCells()}
+                        </Grid>
+                    </Paper>
+                </TransitionGroup>
             </Grid>
         );
     }
