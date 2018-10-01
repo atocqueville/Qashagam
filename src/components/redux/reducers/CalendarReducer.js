@@ -1,4 +1,6 @@
-import { UPDATE_FIRST_DATE, UPDATE_SECOND_DATE } from '../constants/Calendar';
+import { UPDATE_RESERVATION_DATES, DELETE_RESERVATION_DATES } from '../constants/Calendar';
+
+import dateFns from 'date-fns';
 
 const initialState = {
     startDate: undefined,
@@ -7,15 +9,35 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-    case UPDATE_FIRST_DATE: {
+    case UPDATE_RESERVATION_DATES: {
+        var startDate_tmp = state.startDate;
+        var endDate_tmp = state.endDate;
+
+        if (!startDate_tmp && !endDate_tmp) {
+            startDate_tmp = action.date;
+        } else if (startDate_tmp && !endDate_tmp) {
+            var comparator = dateFns.compareAsc(startDate_tmp, action.date);
+            if (comparator === 1) {
+                endDate_tmp = startDate_tmp;
+                startDate_tmp = action.date;
+            } else {
+                endDate_tmp = action.date;
+            }
+        }
+
         return {
             ...state,
-            startDate: action.date
+            startDate: startDate_tmp,
+            endDate: endDate_tmp
         };
     }
 
-    case UPDATE_SECOND_DATE: {
-        return state;
+    case DELETE_RESERVATION_DATES: {
+        return {
+            ...state,
+            startDate: undefined,
+            endDate: undefined
+        };
     }
 
     default:

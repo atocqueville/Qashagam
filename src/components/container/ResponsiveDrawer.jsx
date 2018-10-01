@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
     Drawer, AppBar, Toolbar, Typography,
-    IconButton, Hidden
+    IconButton, Hidden, Button
 }  from '@material-ui/core';
 
 const drawerWidth = 240;
@@ -70,8 +70,9 @@ class ResponsiveDrawer extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="title" color="inherit" noWrap>
-                            Qashagam
+                            Boat booking Web App
                         </Typography>
+                        {/* <Button color="inherit">Login</Button> */}
                     </Toolbar>
                 </AppBar>
                 <Hidden mdUp>

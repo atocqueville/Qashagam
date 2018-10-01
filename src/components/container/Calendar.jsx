@@ -1,24 +1,30 @@
 import React, { Fragment } from 'react';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 import dateFns from 'date-fns';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos';
-import  Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import { IconButton, Grid, Typography, Paper, Divider, Button, ButtonBase } from '@material-ui/core';
+import NavigateBefore from '@material-ui/icons/NavigateBeforeRounded';
+import NavigateNext from '@material-ui/icons/NavigateNextRounded';
 import Day from './Day.jsx';
-import { Button } from '@material-ui/core';
+
+const styles = () => ({
+    button: {
+        display: 'flex',
+        flex: '1 0 auto',
+        minWidth: '60px',
+        borderRadius: 0,
+        padding: 0
+    },
+    buttonContent: {
+        display: 'flex',
+        flex: '1 0 auto',
+        height: '60px'
+    }
+});
 
 class Calendar extends React.Component {
     state = {
         currentMonth: new Date()
     };
-
-    componentWillEnter() {
-        console.log("la")
-    }
 
     renderHeader() {
         const dateFormat = 'MMMM YYYY';
@@ -27,7 +33,7 @@ class Calendar extends React.Component {
             <Grid container direction='row' style={{ display: 'flex', flex: '1 0 auto', justifyContent: 'space-between' }}>
                 <Grid item style={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton onClick={this.prevMonth}>
-                        <ArrowBackIos />
+                        <NavigateBefore />
                     </IconButton>
                 </Grid>
                 <Grid item style={{ display: 'flex', alignItems: 'center' }}>
@@ -37,7 +43,7 @@ class Calendar extends React.Component {
                 </Grid>
                 <Grid item style={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton onClick={this.nextMonth}>
-                        <ArrowForwardIos />
+                        <NavigateNext />
                     </IconButton>
                 </Grid>
             </Grid>
@@ -78,16 +84,22 @@ class Calendar extends React.Component {
                 const cloneDay = day;
                 days.push(
                     <Button
-                        style={{ display: 'flex', flex: '1 0 auto', height: '60px', borderRight: '1px solid rgba(0, 0, 0, 0.12)', minWidth: '60px', borderRadius: 0  }}
-                        onClick={() => this.props.updateFirstDate(dateFns.parse(cloneDay))}
+                        className={this.props.classes.button}
+                        style={{ borderLeft: dateFns.isSunday(cloneDay) ? '' : '1px solid rgba(0, 0, 0, 0.12)' }}
                         key={day}
                     >
-                        <Day
-                            date={formattedDate}
-                            fullDate={cloneDay}
-                            currentMonth={currentMonth}
-
-                        />
+                        <Grid
+                            className={this.props.classes.buttonContent}
+                            onClick={() => this.props.updateDates(dateFns.parse(cloneDay))}
+                        >
+                            <Day
+                                date={formattedDate}
+                                fullDate={cloneDay}
+                                currentMonth={currentMonth}
+                                startDate={this.props.startDate}
+                                endDate={this.props.endDate}
+                            />
+                        </Grid>
                     </Button>
                 );
                 day = dateFns.addDays(day, 1);
@@ -120,25 +132,22 @@ class Calendar extends React.Component {
 
     render() {
         return(
-            <Grid container direction='column' style={{ display: 'flex', flex: '0 1 auto' }}>
-                <TransitionGroup>
-                    <Paper square>
-                        <Grid item style={{ display: 'flex', minHeight: '70px' }}>
-                            {this.renderHeader()}
-                        </Grid>
-                        <Divider />
-                        <Grid item style={{ display: 'flex', minHeight: '40px' }}>
-                            {this.renderDays()}
-                        </Grid>
-                        <Divider />
-                        <Grid item>
-                            {this.renderCells()}
-                        </Grid>
-                    </Paper>
-                </TransitionGroup>
+            <Grid container direction='column' style={{ display: 'flex', flex: '0 1 auto', maxWidth: '620px' }}>
+                <Paper square>
+                    <Grid item style={{ display: 'flex', minHeight: '70px' }}>
+                        {this.renderHeader()}
+                    </Grid>
+                    <Grid item style={{ display: 'flex', minHeight: '40px' }}>
+                        {this.renderDays()}
+                    </Grid>
+                    <Divider />
+                    <Grid item>
+                        {this.renderCells()}
+                    </Grid>
+                </Paper>
             </Grid>
         );
     }
 }
 
-export default Calendar;
+export default withStyles(styles)(Calendar);

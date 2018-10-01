@@ -1,44 +1,79 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import dateFns from 'date-fns';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Dialog, Slide } from '@material-ui/core';
 
 import Calendar from '../container/Calendar.jsx';
 import * as CalendarAction from '../redux/actions/CalendarAction';
+import DateBox from '../container/DateBox.jsx';
+import DialogConfirmation from '../container/DialogConfirmation.jsx';
+
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+}
 
 class MainPage extends React.Component {
+    state = {
+        dialogOpen: false
+    }
+    
+    updateDates = (date) => {
+        this.props.calendarAction.updateReservationDates(date);
+    }
 
-    updateFirstDate = (date) => {
-        this.props.calendarAction.updateFirstDate(date);
+    deleteDates = () => {
+        this.props.calendarAction.deleteReservationDates();
+    }
+
+    openDialog = () => {
+        this.setState({
+            dialogOpen: true
+        });
+    }
+
+    closeDialog = () => {
+        this.setState({
+            dialogOpen: false
+        });
     }
 
     render() {
+        const { calendarReducer } = this.props;
 
         return (
-            <Grid container direction='column'>
-                <Grid item>
-                    <Grid container direction='column'>
-                        <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Typography variant='display3'>
-                                QASHAGAM
-                            </Typography>
-                        </Grid>
-                        <Grid item style={{ display: 'flex', justifyContent: 'center', paddingLeft: '450px', paddingRight: '450px', paddingTop: '70px' }}>
-                            <Calendar
-                                updateFirstDate={this.updateFirstDate}
-                            />
-                        </Grid>
-                    </Grid>
+            <Grid container direction='column' style={{ justifyContent: 'center' }}>
+                <Grid item style={{  display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant='display3'>
+                        QASHAGAM
+                    </Typography>
                 </Grid>
-                <Grid item>
-                    <Grid style={{ display: 'flex', paddingTop: '50px' }}>
-                        Premiere date selectionnée : {dateFns.format(this.props.calendarReducer.startDate)}
-                    </Grid>
-                    <Grid style={{ display: 'flex' }}>
-                        Deuxieme date selectionnée : {dateFns.format(this.props.calendarReducer.endDate)}
-                    </Grid>
+
+                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '70px' }}>
+                    <Calendar
+                        updateDates={this.updateDates}
+                        startDate={calendarReducer.startDate}
+                        endDate={calendarReducer.endDate}
+                    />
                 </Grid>
+                        
+                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px' }}>
+                    <DateBox
+                        deleteAction={this.deleteDates}
+                        continueAction={this.openDialog}
+                        startDate={calendarReducer.startDate}
+                        endDate={calendarReducer.endDate}
+                    />
+                </Grid>
+    
+                <Dialog
+                    open={true}
+                    TransitionComponent={Transition}
+                    onClose={this.closeDialog}
+                >
+                    <DialogConfirmation    
+                        closeDialog={this.closeDialog}
+                    />
+                </Dialog>
             </Grid>
         );
     }
