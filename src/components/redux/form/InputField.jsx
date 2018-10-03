@@ -6,19 +6,21 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 class TextField extends React.Component {
 
-    renderTextField = ({
-        label,
-        value,
-        children,
-        ...custom
-    }) => {
+    renderTextField = field => {
+        const {
+            input: { onChange, value },
+            label,
+            meta
+        } = field;
+
         return(
             <FormControl>
                 <InputLabel>{label}</InputLabel>
                 <Input
                     value={value}
-                    children={children}
-                    {...custom}
+                    onChange={(event) => {
+                        onChange(event);
+                    }}
                 />
             </FormControl>
         );

@@ -7,27 +7,25 @@ import { MenuItem } from '@material-ui/core';
 
 class SelectField extends React.Component {
 
-    renderSelectField = ({
-        label,
-        input,
-        value,
-        items,
-        ...custom,
-    }) => {
-        console.log(value)
+    renderSelectField = field => {
+        const {
+            input: { onChange, value },
+            items,
+            label,
+            meta
+        } = field;
+        
         return(
             <FormControl>
                 <InputLabel>{label}</InputLabel>
                 <Select
                     value={value}
-                    onChange={(event, value) => {
-                        console.log(value)
-                        input.onChange(value)}
-                    }
-                    {...custom}
+                    onChange={(event) => {
+                        onChange(event);
+                    }}
                 >
                     {items.map(item => 
-                        <MenuItem value={item} key={item}>{item}</MenuItem>
+                        <MenuItem value={item.id} key={item.id}>{item.value}</MenuItem>
                     )}
                 </Select>
             </FormControl>

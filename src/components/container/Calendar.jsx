@@ -1,25 +1,9 @@
 import React, { Fragment } from 'react';
 import dateFns from 'date-fns';
-import { withStyles } from '@material-ui/core/styles';
-import { IconButton, Grid, Typography, Paper, Divider, Button, ButtonBase } from '@material-ui/core';
+import { IconButton, Grid, Typography, Paper, Divider } from '@material-ui/core';
 import NavigateBefore from '@material-ui/icons/NavigateBeforeRounded';
 import NavigateNext from '@material-ui/icons/NavigateNextRounded';
 import Day from './Day.jsx';
-
-const styles = () => ({
-    button: {
-        display: 'flex',
-        flex: '1 0 auto',
-        minWidth: '60px',
-        borderRadius: 0,
-        padding: 0
-    },
-    buttonContent: {
-        display: 'flex',
-        flex: '1 0 auto',
-        height: '60px'
-    }
-});
 
 class Calendar extends React.Component {
     state = {
@@ -83,24 +67,16 @@ class Calendar extends React.Component {
                 formattedDate = dateFns.format(day, dateFormat);
                 const cloneDay = day;
                 days.push(
-                    <Button
-                        className={this.props.classes.button}
-                        style={{ borderLeft: dateFns.isSunday(cloneDay) ? '' : '1px solid rgba(0, 0, 0, 0.12)' }}
+                    <Day
+                        date={formattedDate}
+                        fullDate={cloneDay}
+                        currentMonth={currentMonth}
+                        startDate={this.props.startDate}
+                        endDate={this.props.endDate}
+                        trips={this.props.trips}
+                        updateDates={this.props.updateDates}
                         key={day}
-                    >
-                        <Grid
-                            className={this.props.classes.buttonContent}
-                            onClick={() => this.props.updateDates(dateFns.parse(cloneDay))}
-                        >
-                            <Day
-                                date={formattedDate}
-                                fullDate={cloneDay}
-                                currentMonth={currentMonth}
-                                startDate={this.props.startDate}
-                                endDate={this.props.endDate}
-                            />
-                        </Grid>
-                    </Button>
+                    />
                 );
                 day = dateFns.addDays(day, 1);
             }
@@ -150,4 +126,4 @@ class Calendar extends React.Component {
     }
 }
 
-export default withStyles(styles)(Calendar);
+export default Calendar;

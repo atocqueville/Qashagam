@@ -10,14 +10,14 @@ class DialogForm extends React.Component {
         
         return (
             <Grid container direction='column'>
-                <Grid item>
+                <Grid item style={{ paddingBottom: '10px' }}>
                     <SelectField
                         name='famille'
                         label='Famille'
-                        items={['de Tocqueville', 'Rigal']}
+                        items={[{id: 'tocqueville', value: 'de Tocqueville'}, {id: 'rigal', value: 'Rigal'}]}
                     />
                 </Grid>
-                <Grid item>
+                <Grid item style={{ paddingBottom: '10px' }}>
                     <TextField
                         name='lieu'
                         label='Lieu'

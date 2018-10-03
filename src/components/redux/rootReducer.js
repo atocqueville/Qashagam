@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import calendar from './reducers/CalendarReducer';
+import { reducer as formReducer } from 'redux-form';
+import calendarReducer from './reducers/CalendarReducer';
+import couchDBReducer from './reducers/CouchDBReducer';
 
 export default combineReducers({
-    calendar
+    calendarReducer,
+    couchDBReducer,
+    form: formReducer
 });

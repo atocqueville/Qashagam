@@ -18,5 +18,15 @@ export default createMuiTheme({
                 borderRight: 'none'
             },
         },
+        MuiDialogActions: {
+            root: {
+                justifyContent: 'space-between'
+            }
+        },
+        MuiInput:{
+            root: {
+                width: '220px'
+            }
+        }
     }
 });
