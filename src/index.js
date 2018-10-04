@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -15,9 +15,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
     rootReducer,
-    compose(applyMiddleware(sagaMiddleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    applyMiddleware(sagaMiddleware)
 );
 
 sagaMiddleware.run(mySaga);
