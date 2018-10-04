@@ -4,7 +4,7 @@ import { GET_ALL_TRIPS, GET_ALL_TRIPS_SUCCEEDED, GET_ALL_TRIPS_FAILED } from '..
 import { ADD_NEW_TRIP, ADD_NEW_TRIP_SUCCEEDED, ADD_NEW_TRIP_FAILED } from '../constants/CouchDB';
 
 import PouchDB from 'pouchdb';
-var db = new PouchDB('http://tokie:detok@localhost:5984/trips');
+var db = new PouchDB('http://localhost:5984/trips');
 
 
 function* fetchTrips() {

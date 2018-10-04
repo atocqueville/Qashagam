@@ -3,7 +3,8 @@ import { Field } from 'redux-form';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import { MenuItem } from '@material-ui/core';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import MenuItem from '@material-ui/core/MenuItem';
 
 class SelectField extends React.Component {
 
@@ -28,6 +29,7 @@ class SelectField extends React.Component {
                         <MenuItem value={item.id} key={item.id}>{item.value}</MenuItem>
                     )}
                 </Select>
+                {meta.submitFailed && meta.error && <FormHelperText style={{ color:'red' }}>{meta.error}</FormHelperText>}
             </FormControl>
         );
     }

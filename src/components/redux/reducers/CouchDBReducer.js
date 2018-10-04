@@ -1,4 +1,4 @@
-import { GET_ALL_TRIPS_SUCCEEDED, ADD_NEW_TRIP, ADD_NEW_TRIP_SUCCEEDED, ADD_NEW_TRIP_FAILED } from '../constants/CouchDB';
+import { GET_ALL_TRIPS_SUCCEEDED, ADD_NEW_TRIP, ADD_NEW_TRIP_SUCCEEDED, ADD_NEW_TRIP_FAILED, RESET_STATE } from '../constants/CouchDB';
 
 const initialState = {
     trips: undefined,
@@ -42,6 +42,15 @@ export default function(state = initialState, action) {
             loading: false,
             success: false,
             failure: true
+        };
+    }
+
+    case RESET_STATE: {
+        return {
+            ...state,
+            loading: false,
+            success: false,
+            failure: false
         };
     }
 

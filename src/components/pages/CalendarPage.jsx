@@ -10,7 +10,7 @@ import * as CouchDBAction from '../redux/actions/CouchDBAction';
 
 import Calendar from '../container/Calendar.jsx';
 import DateBox from '../container/DateBox.jsx';
-import DialogConfirmation from '../container/DialogConfirmation.jsx';
+import DialogForm from '../container/DialogForm.jsx';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -24,7 +24,7 @@ class MainPage extends React.Component {
     }
 
     state = {
-        dialogOpen: true
+        dialogOpen: false
     }
     
     updateDates = (date) => {
@@ -59,6 +59,7 @@ class MainPage extends React.Component {
             dialogOpen: false
         });
         this.props.calendarAction.deleteReservationDates();
+        this.props.dbAction.resetState();
         this.props.dbAction.getAllTrips();
     }
 
@@ -96,9 +97,9 @@ class MainPage extends React.Component {
                     TransitionComponent={Transition}
                     onClose={this.closeDialog}
                 >
-                    <DialogConfirmation
+                    <DialogForm
                         closeDialog={this.closeDialog}
-                        submitTrip={this.submitTrip}
+                        onSubmit={this.submitTrip}
                         dbReducer={dbReducer}
                     />
                 </Dialog>

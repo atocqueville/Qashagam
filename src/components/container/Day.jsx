@@ -30,8 +30,10 @@ class Day extends React.Component {
 
     checkValidityDates = (date, startDate, trips) => {
         var isOverlapping = false;
-        var newStartDate = startDate;
+
+        var newStartDate = startDate ? startDate : date;
         var newEndDate = date;
+        
         // swap if start after end
         if (isAfter(startDate, date)) [newStartDate, newEndDate] = [newEndDate, newStartDate];
 

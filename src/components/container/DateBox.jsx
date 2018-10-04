@@ -26,14 +26,14 @@ class DateBox extends React.Component {
 
                     <Grid item style={{ display: 'flex', flex: '1 0 auto' }}>
                         <Grid container direction='row' style={{ justifyContent: 'space-evenly', padding: '24px' }}>
-                            <Grid item>
+                            <Grid item style={{ width: '125px' }}>
                                 <Typography>
-                                    Debut : {dateFns.format(this.props.startDate, 'MM/DD/YYYY')}
+                                    Debut : {this.props.startDate && dateFns.format(this.props.startDate, 'MM/DD/YYYY')}
                                 </Typography>
                             </Grid>
-                            <Grid item>
+                            <Grid item style={{ width: '125px' }}>
                                 <Typography>
-                                    Fin : {dateFns.format(this.props.endDate, 'MM/DD/YYYY')}
+                                    Fin : {this.props.endDate && dateFns.format(this.props.endDate, 'MM/DD/YYYY')}
                                 </Typography>
                             </Grid>
                         </Grid>
