@@ -3,14 +3,15 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 class TripsPage extends React.Component {
-
     render() {
         
         return (
-            <Grid>
-                <Typography>
-                    WIP
-                </Typography>
+            <Grid container direction='column' style={{ display: 'flex', justifyContent: 'center', paddingTop: '64px' }}>
+                <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant='display4'>
+                        WIP
+                    </Typography>
+                </Grid>
             </Grid>
         );
     }

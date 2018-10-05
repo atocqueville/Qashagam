@@ -67,10 +67,10 @@ class MainPage extends React.Component {
         const { calendarReducer, dbReducer } = this.props;
         
         return (
-            <Grid container direction='column' style={{ justifyContent: 'center' }}>
-                <Grid item style={{  display: 'flex', justifyContent: 'center' }}>
+            <Grid container direction='column' style={{ paddingTop: '64px' }}>
+                <Grid item style={{  display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
                     <Typography variant='display3'>
-                        Qashagam
+                        Calendrier
                     </Typography>
                 </Grid>
 
@@ -83,7 +83,7 @@ class MainPage extends React.Component {
                     />
                 </Grid>
                         
-                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '50px' }}>
+                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
                     <DateBox
                         deleteAction={this.deleteDates}
                         continueAction={this.openDialog}
