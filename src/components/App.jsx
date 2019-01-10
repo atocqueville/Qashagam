@@ -48,34 +48,36 @@ class App extends React.Component {
 
         return (
             <MuiThemeProvider theme={theme}>
-                <AppBar>
-                    <Toolbar>
-                        <IconButton
-                            className={classes.menuButton}
-                            color="inherit"
-                            aria-label="Menu"
-                            onClick={this.handleDrawerToggle}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="title" color="inherit" className={classes.grow}>
-                            QASHAGAM
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant='temporary'
-                    anchor='left'
-                    classes={{ paper: classes.drawerPaper }}
-                    open={this.state.open}
-                    onClick={this.handleDrawerToggle}
-                >
-                    {drawer}
-                </Drawer>
-                <Switch>
-                    <Route exact path="/" component={CalendarPage}/>
-                    <Route path="/trips" component={TripsPage}/>
-                </Switch>
+                <div className={classes.grow}>
+                    <AppBar>
+                        <Toolbar>
+                            <IconButton
+                                className={classes.menuButton}
+                                color="inherit"
+                                aria-label="Menu"
+                                onClick={this.handleDrawerToggle}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography variant="title" color="inherit" className={classes.grow}>
+                                QASHAGAM
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <Drawer
+                        variant='temporary'
+                        anchor='left'
+                        classes={{ paper: classes.drawerPaper }}
+                        open={this.state.open}
+                        onClick={this.handleDrawerToggle}
+                    >
+                        {drawer}
+                    </Drawer>
+                    <Switch>
+                        <Route exact path="/" component={CalendarPage}/>
+                        <Route path="/trips" component={TripsPage}/>
+                    </Switch>
+                </div>
             </MuiThemeProvider>
         );
     }
