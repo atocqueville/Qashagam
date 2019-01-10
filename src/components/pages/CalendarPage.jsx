@@ -8,6 +8,8 @@ import dateFns from 'date-fns';
 import * as CalendarAction from '../redux/actions/CalendarAction';
 import * as CouchDBAction from '../redux/actions/CouchDBAction';
 
+import ColoredSquare from '../atoms/ColoredSquare.jsx';
+
 import Calendar from '../container/Calendar.jsx';
 import DateBox from '../container/DateBox.jsx';
 import DialogForm from '../container/DialogForm.jsx';
@@ -68,13 +70,29 @@ class MainPage extends React.Component {
         
         return (
             <Grid container direction='column' style={{ paddingTop: '64px' }}>
-                <Grid item style={{  display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
-                    <Typography variant='display3'>
-                        Calendrier
-                    </Typography>
+                <Grid item style={{  display: 'flex', justifyContent: 'center', padding: '18px' }}>
+                    <Grid container direction="row" style={{ justifyContent: 'space-around' }}>
+                        <Grid item>
+                            <Typography variant='display1'>
+                                Calendrier
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Grid direction="column">
+                                <Grid item>
+                                    <ColoredSquare color="blue" />
+                                    <Typography style={{ display: 'inline-block', paddingLeft: '6px' }}> Tocqueville </Typography>
+                                </Grid>
+                                <Grid item>
+                                    <ColoredSquare color="red" />
+                                    <Typography style={{ display: 'inline-block', paddingLeft: '6px' }}> Rigal </Typography>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
 
-                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
+                <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
                     <Calendar
                         updateDates={this.updateDates}
                         startDate={calendarReducer.startDate}
@@ -83,7 +101,7 @@ class MainPage extends React.Component {
                     />
                 </Grid>
                         
-                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '40px' }}>
+                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
                     <DateBox
                         deleteAction={this.deleteDates}
                         continueAction={this.openDialog}

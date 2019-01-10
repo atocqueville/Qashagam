@@ -10,7 +10,7 @@ export default createMuiTheme({
     },
 
     typography: {
-        // Use the system font instead of the default Roboto font.
+        fontFamily: 'Roboto'
     },
 
     overrides: {

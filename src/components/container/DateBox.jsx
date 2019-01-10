@@ -46,7 +46,7 @@ class DateBox extends React.Component {
                             onClick={this.props.deleteAction}
                             disabled={!this.props.startDate}
                         >
-                            Supprimer
+                            Annuler
                             <DeleteIcon className={classes.icon}/>
                         </Button>
                         <Button
