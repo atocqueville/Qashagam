@@ -71,14 +71,14 @@ class MainPage extends React.Component {
         return (
             <Grid container direction='column' style={{ paddingTop: '64px' }}>
                 <Grid item style={{  display: 'flex', justifyContent: 'center', padding: '18px' }}>
-                    <Grid container direction="row" style={{ justifyContent: 'space-around' }}>
+                    <Grid container direction="row" style={{ justifyContent: 'space-around', maxWidth: '620px' }}>
                         <Grid item>
                             <Typography variant='display1'>
                                 Calendrier
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Grid direction="column">
+                            <Grid container direction="column">
                                 <Grid item>
                                     <ColoredSquare color="blue" />
                                     <Typography style={{ display: 'inline-block', paddingLeft: '6px' }}> Tocqueville </Typography>
@@ -101,7 +101,7 @@ class MainPage extends React.Component {
                     />
                 </Grid>
                         
-                <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
+                <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
                     <DateBox
                         deleteAction={this.deleteDates}
                         continueAction={this.openDialog}

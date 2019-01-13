@@ -10,7 +10,11 @@ export default createMuiTheme({
     },
 
     typography: {
-        fontFamily: 'Roboto'
+        fontFamily: 'Roboto',
+        display2: {
+            fontSize: '1rem',
+            textTransform: 'capitalize'
+        }
     },
 
     overrides: {

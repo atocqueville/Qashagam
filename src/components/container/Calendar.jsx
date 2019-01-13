@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import dateFns from 'date-fns';
+
 import { IconButton, Grid, Typography, Paper, Divider } from '@material-ui/core';
 import NavigateBefore from '@material-ui/icons/NavigateBeforeRounded';
 import NavigateNext from '@material-ui/icons/NavigateNextRounded';
+
 import Day from './Day.jsx';
 
 class Calendar extends React.Component {
@@ -11,8 +13,6 @@ class Calendar extends React.Component {
     };
 
     renderHeader() {
-        const dateFormat = 'MMMM YYYY';
-
         return (
             <Grid container direction='row' style={{ display: 'flex', flex: '1 0 auto', justifyContent: 'space-between' }}>
                 <Grid item style={{ display: 'flex', alignItems: 'center' }}>
@@ -22,7 +22,7 @@ class Calendar extends React.Component {
                 </Grid>
                 <Grid item style={{ display: 'flex', alignItems: 'center' }}>
                     <Typography>
-                        {dateFns.format(this.state.currentMonth, dateFormat)}
+                        {dateFns.format(this.state.currentMonth, 'MMMM YYYY')}
                     </Typography>
                 </Grid>
                 <Grid item style={{ display: 'flex', alignItems: 'center' }}>
@@ -35,37 +35,52 @@ class Calendar extends React.Component {
     }
 
     renderDays() {
-        const dateFormat = 'dddd';
         const days = [];
         let startDate = dateFns.startOfWeek(this.state.currentMonth);
+
         for (let i = 0; i < 7; i++) {
             days.push(
                 <Grid item key={i} style={{ display: 'flex', flex: '1 0 auto', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography>
-                        {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+                        {dateFns.format(dateFns.addDays(startDate, i), 'dddd')}
                     </Typography>
                 </Grid>
             );
         }
+
         return <Grid container direction='row'>{days}</Grid>;
     }
 
     renderCells() {
         const { currentMonth } = this.state;
+        const { trips } = this.props;
+
         const monthStart = dateFns.startOfMonth(currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
         const startDate = dateFns.startOfWeek(monthStart);
         const endDate = dateFns.endOfWeek(monthEnd);
 
-        const dateFormat = 'D';
         const rows = [];
         let days = [];
         let day = startDate;
         let formattedDate = '';
+        let associatedTrip = undefined;
+
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
-                formattedDate = dateFns.format(day, dateFormat);
+                formattedDate = dateFns.format(day, 'D');
                 const cloneDay = day;
+
+                if (trips) {
+                    trips.forEach(element => {
+                        var _startDate = element.doc.startDate;
+                        var _endDate = element.doc.endDate;
+                        if (dateFns.isWithinRange(cloneDay, _startDate, _endDate)) {
+                            associatedTrip = element.doc;
+                        }
+                    });
+                }
+
                 days.push(
                     <Day
                         date={formattedDate}
@@ -75,11 +90,15 @@ class Calendar extends React.Component {
                         endDate={this.props.endDate}
                         trips={this.props.trips}
                         updateDates={this.props.updateDates}
+                        associatedTrip={associatedTrip}
                         key={day}
                     />
                 );
+
                 day = dateFns.addDays(day, 1);
+                associatedTrip = undefined;
             }
+
             rows.push(
                 <Fragment key={day}>
                     <Grid item style={{ display: 'flex', flex: '1 0 auto' }}>
