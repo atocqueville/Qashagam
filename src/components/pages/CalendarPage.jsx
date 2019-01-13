@@ -67,11 +67,11 @@ class MainPage extends React.Component {
 
     render() {
         const { calendarReducer, dbReducer } = this.props;
-        
+
         return (
-            <Grid container direction='column' style={{ paddingTop: '64px' }}>
+            <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '56px', flexWrap: 'nowrap', marginLeft: 'auto', marginRight: 'auto' }}>
                 <Grid item style={{  display: 'flex', justifyContent: 'center', padding: '18px' }}>
-                    <Grid container direction="row" style={{ justifyContent: 'space-around', maxWidth: '620px' }}>
+                    <Grid container direction="row" style={{ justifyContent: 'space-around', maxWidth: '620px', width: '100%' }}>
                         <Grid item>
                             <Typography variant='display1'>
                                 Calendrier

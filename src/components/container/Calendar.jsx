@@ -42,7 +42,7 @@ class Calendar extends React.Component {
             days.push(
                 <Grid item key={i} style={{ display: 'flex', flex: '1 0 auto', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography>
-                        {dateFns.format(dateFns.addDays(startDate, i), 'dddd')}
+                        {dateFns.format(dateFns.addDays(startDate, i), 'ddd')}
                     </Typography>
                 </Grid>
             );
@@ -129,14 +129,14 @@ class Calendar extends React.Component {
         return(
             <Grid container direction='column' style={{ display: 'flex', flex: '0 1 auto', maxWidth: '620px' }}>
                 <Paper square>
-                    <Grid item style={{ display: 'flex', minHeight: '70px' }}>
+                    <Grid item style={{ display: 'flex' }}>
                         {this.renderHeader()}
                     </Grid>
-                    <Grid item style={{ display: 'flex', minHeight: '40px' }}>
+                    <Grid item style={{ display: 'flex' }}>
                         {this.renderDays()}
                     </Grid>
                     <Divider />
-                    <Grid item>
+                    <Grid item style={{ display: 'flex' }}>
                         {this.renderCells()}
                     </Grid>
                 </Paper>

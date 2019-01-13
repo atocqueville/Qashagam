@@ -22,7 +22,7 @@ class DateBox extends React.Component {
 
         return (
             <Paper square style={{ display: 'flex', flex: '1 0 auto', maxWidth: '620px' }} elevation={0}>
-                <Grid container direction='column'>
+                <Grid container direction='column' style={{ flexWrap: 'nowrap' }}>
 
                     <Grid item style={{ display: 'flex', flex: '1 0 auto' }}>
                         <Grid container direction='row' style={{ justifyContent: 'space-evenly', padding: '24px' }}>
@@ -39,7 +39,7 @@ class DateBox extends React.Component {
                         </Grid>
                     </Grid>
 
-                    <Grid item style={{ display: 'flex', justifyContent: 'space-between', padding: '0px 12px 12px 12px' }}>
+                    <Grid item style={{ display: 'flex', justifyContent: 'space-between', padding: '0 12px' }}>
                         <Button
                             variant="contained"
                             color="secondary"

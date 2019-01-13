@@ -14,14 +14,13 @@ const styles = () => ({
     button: {
         display: 'flex',
         flex: '1 0 auto',
-        minWidth: '60px',
+        minWidth: '20px',
         borderRadius: 0,
         padding: 0
     },
     buttonContent: {
         display: 'flex',
-        flex: '1 0 auto',
-        height: '60px'
+        flex: '1 0 auto'
     }
 });
 
@@ -133,7 +132,7 @@ class Day extends React.Component {
                                 </Typography>
                             </Grid>
                         
-                            <Grid item style={{ display: 'flex', flex: '1 0 auto', background: this.colorOccupation(fullDate, startDate, endDate, trips), margin: '4px' }} />
+                            <Grid id="LFEIGHBFEI" item style={{ display: 'flex', flex: '1 0 auto', background: this.colorOccupation(fullDate, startDate, endDate, trips), height: '5px' }} />
                         </Grid>
                     </Grid>
                 </Button>
