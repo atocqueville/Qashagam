@@ -21,7 +21,7 @@ class DateBox extends React.Component {
         const { classes } = this.props;
 
         return (
-            <Paper square style={{ display: 'flex', flex: '1 0 auto', maxWidth: '620px' }}>
+            <Paper square style={{ display: 'flex', flex: '1 0 auto', maxWidth: '620px' }} elevation={0}>
                 <Grid container direction='column'>
 
                     <Grid item style={{ display: 'flex', flex: '1 0 auto' }}>
