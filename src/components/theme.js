@@ -14,6 +14,9 @@ export default createMuiTheme({
         display2: {
             fontSize: '1rem',
             textTransform: 'capitalize'
+        },
+        display3: {
+            fontSize: '1.5rem'
         }
     },
 
