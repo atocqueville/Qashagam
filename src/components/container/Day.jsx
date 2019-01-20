@@ -150,6 +150,8 @@ class Day extends React.Component {
                     onClose={this.handleCloseModal}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
+                    maxWidth='md'
+                    scroll='body'
                 >
                     <TripHighlight trip={tripHighlight} handleClose={this.handleCloseModal} />
                 </Dialog>

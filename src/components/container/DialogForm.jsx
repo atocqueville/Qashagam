@@ -6,6 +6,7 @@ import { DialogTitle, DialogContent, DialogActions, Button, Grid } from '@materi
 import green from '@material-ui/core/colors/green';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CheckIcon from '@material-ui/icons/Check';
+import AttachFile from '@material-ui/icons/AttachFile';
 import SaveIcon from '@material-ui/icons/Save';
 
 import SelectField from '../redux/form/SelectField.jsx';
@@ -23,7 +24,7 @@ const styles = () => ({
         position: 'fixed',
         bottom: 12,
         right: 8,
-        zIndex: 2,
+        zIndex: 2
     }
 });
 
@@ -38,6 +39,10 @@ const validate = values => {
 };
 
 class DialogForm extends React.Component {
+
+    manageFile = (file) => {
+        console.log(file);
+    }
 
     render() {
         const { dbReducer, classes, handleSubmit } = this.props;
@@ -65,11 +70,22 @@ class DialogForm extends React.Component {
                                 label='Lieu'
                             />
                         </Grid>
-                        <Grid item>
+                        <Grid item style={{ paddingBottom: '20px' }}>
                             <TextField
                                 name='detail'
                                 label='Detail'
                             />
+                        </Grid>
+                        <Grid item>
+                            <Button variant='contained' component='label' color='primary'>
+                                photo
+                                <AttachFile />
+                                <input
+                                    type='file'
+                                    style={{ display: 'none' }}
+                                    onChange={e => this.manageFile(e.target.files[0])}
+                                />
+                            </Button>
                         </Grid>
                     </Grid>
                 </DialogContent>

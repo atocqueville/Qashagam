@@ -12,16 +12,24 @@ import CardContent from '@material-ui/core/CardContent';
 
 import tripWP from '../../../img/tripWP.png';
 
-const styles = () => ({
+const styles = theme => ({
     card: {
         '&:last-child': {
             paddingBottom: 0
         }
     },
     media: {
-        height: '30vh',
-        width: '80vw'
-    }
+        [theme.breakpoints.down('sm')]: {
+            height: '350px'
+        },
+        [theme.breakpoints.down('xs')]: {
+            height: '160px'
+        },
+        [theme.breakpoints.up('md')]: {
+            height: '500px'
+        }
+    },
+    
 });
 
 class TripHighlight extends React.Component {
