@@ -23,6 +23,7 @@ class MainPage extends React.Component {
         super(props);
         
         props.dbAction.getAllTrips();
+        props.dbAction.signUp();
     }
 
     state = {

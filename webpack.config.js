@@ -1,8 +1,14 @@
 /* eslint-disable */
-
+const path = require("path");
 const HtmlWebPackPlugin= require('html-webpack-plugin');
 
 module.exports = {
+    devServer: {
+        historyApiFallback: true,
+    },
+    output: {
+        publicPath: '/'
+    },
     module: {
         rules: [
             {
@@ -42,9 +48,6 @@ module.exports = {
                 ],
             }
         ]
-    },
-    devServer: {
-        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebPackPlugin({

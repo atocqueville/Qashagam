@@ -77,7 +77,7 @@ class DialogForm extends React.Component {
                             />
                         </Grid>
                         <Grid item>
-                            <Button variant='contained' component='label' color='primary'>
+                            <Button variant='contained' component='label' color='primary' disabled>
                                 photo
                                 <AttachFile />
                                 <input

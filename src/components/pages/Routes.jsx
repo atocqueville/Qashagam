@@ -25,13 +25,13 @@ class Routes extends React.Component {
         return(
             <div className={classes.root}>
                 <List subheader={<ListSubheader> Menu </ListSubheader>}>
-                    <ListItem button component={Link} to='/'>
+                    <ListItem button component={Link} to='/calendar/resa'>
                         <ListItemIcon>
                             <EventIcon />
                         </ListItemIcon>
                         <ListItemText primary="Calendrier" />
                     </ListItem>
-                    <ListItem button component={Link} to='/trips'>
+                    <ListItem button component={Link} to='/calendar/trips'>
                         <ListItemIcon>
                             <TimelineIcon />
                         </ListItemIcon>

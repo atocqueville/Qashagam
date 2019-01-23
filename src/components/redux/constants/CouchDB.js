@@ -6,4 +6,6 @@ export const ADD_NEW_TRIP = 'ADD_NEW_TRIP';
 export const ADD_NEW_TRIP_SUCCEEDED = 'ADD_NEW_TRIP_SUCCEEDED';
 export const ADD_NEW_TRIP_FAILED = 'ADD_NEW_TRIP_FAILED';
 
+export const SIGN_UP = 'SIGN_UP';
+
 export const RESET_STATE = 'RESET_STATE';
