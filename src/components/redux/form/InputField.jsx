@@ -1,6 +1,13 @@
 import React from 'react';
 import { Field } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core';
+
+const styles = () => ({
+    input: {
+        height: 12
+    }
+})
 
 class InputField extends React.Component {
     static defaultProps ={
@@ -27,6 +34,7 @@ class InputField extends React.Component {
                 onChange={(event) => {
                     onChange(event);
                 }}
+                InputProps={{ classes: { input: this.props.classes.input } }}
             />
         );
     }
@@ -42,4 +50,4 @@ class InputField extends React.Component {
     }
 }
 
-export default InputField;
+export default withStyles(styles)(InputField);

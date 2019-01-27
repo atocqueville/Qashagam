@@ -28,8 +28,7 @@ const styles = theme => ({
         [theme.breakpoints.up('md')]: {
             height: '500px'
         }
-    },
-    
+    }
 });
 
 class TripHighlight extends React.Component {

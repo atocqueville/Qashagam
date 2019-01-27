@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import theme from './theme.js';
@@ -16,7 +16,6 @@ class App extends React.Component {
 
         return (
             <MuiThemeProvider theme={theme}>
-                {/* <Redirect to="/calendar/resa" /> */}
                 <Route exact path="/" component={Login} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route path="/calendar" component={TopBar}/>

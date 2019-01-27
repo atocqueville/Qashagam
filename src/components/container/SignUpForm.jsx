@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 import TextField from '../redux/form/InputField.jsx';
 
@@ -38,7 +41,7 @@ const validate = values => {
 };
 
 class SignUpForm extends React.Component {
-    static defaultProps ={
+    static defaultProps = {
         label: 'default',
         variant: 'standard',
         type: 'text'
@@ -47,10 +50,15 @@ class SignUpForm extends React.Component {
     render() {
         const { handleSubmit, errorCode } = this.props;
 
-        return(
+        return (
             <form onSubmit={handleSubmit}>
                 <Grid container direction='column'>
-                    <Grid item style={{ display: 'flex', justifyContent: 'center', padding: '0px 20px 20px' }}>
+                    <Grid item>
+                        <IconButton color='inherit' component={Link} to="/">
+                            <ArrowBack />
+                        </IconButton>
+                    </Grid>
+                    <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
                         <Typography variant='display4'> Inscription </Typography>
                     </Grid>
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>

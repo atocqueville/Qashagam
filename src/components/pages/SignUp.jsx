@@ -14,12 +14,25 @@ import { withStyles } from '@material-ui/core';
 import SignUpForm from '../container/SignUpForm.jsx';
 import * as FirebaseAction from '../redux/firebase/actions';
 
-const styles = () => ({
-    cardContent: {
-        paddingTop: 0
+const styles = theme => ({
+    grid: {
+        [theme.breakpoints.up('sm')]: {
+            height: '100vh'
+        },
+        [theme.breakpoints.only('xs')]: {
+            padding: '10vw'
+        }
     },
-    iconButton: {
-        color: '#000'
+    card: {
+        [theme.breakpoints.only('xs')]: {
+            flex: '1 0 auto'
+        }
+    },
+    cardContent: {
+        [theme.breakpoints.only('xs')]: {
+            padding: 0
+        },
+        flex: '1 0 auto'
     }
 });
 
@@ -33,13 +46,10 @@ class SignUp extends React.Component {
         const { firebase, classes } = this.props;
 
         return (
-            <Grid style={{ display: 'flex', flex: '1 0 auto', height: '100vh' }}>
+            <Grid className={classes.grid} style={{ display: 'flex', flex: '1 0 auto' }}>
                 <Grid style={{ display: 'flex', flex: '1 0 auto', alignItems: 'center', justifyContent: 'center' }}>
-                    <Card style={{ minWidth: '300px' }}>
+                    <Card className={classes.card} style={{ display: 'flex', justifyContent: 'center' }}>
                         {firebase.loading && <LinearProgress />}
-                        <IconButton classes={{ root: classes.iconButton }} component={Link} to="/">
-                            <ArrowBack />
-                        </IconButton>
                         <CardContent classes={{ root: classes.cardContent }}>
                             <SignUpForm onSubmit={this.submitForm} errorCode={firebase.signupError}/>
                         </CardContent>

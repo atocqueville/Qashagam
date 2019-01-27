@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import MenuIcon from '@material-ui/icons/Menu';
-import {
-    Drawer, AppBar, Toolbar, Typography,
-    IconButton
-}  from '@material-ui/core';
 
-import Routes from '../pages/Routes.jsx';
+import MenuIcon from '@material-ui/icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import { withStyles } from '@material-ui/core/styles';
+
+import DrawerLinks from '../atoms/DrawerLinks.jsx';
 
 const styles = () => ({
     menuButton: {
@@ -54,7 +56,7 @@ class TopBar extends React.Component {
                     open={this.state.open}
                     onClick={this.handleDrawerToggle}
                 >
-                    <Routes />
+                    <DrawerLinks />
                 </Drawer>
             </Fragment>
         );

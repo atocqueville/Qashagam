@@ -18,7 +18,7 @@ const styles = theme => ({
     },
 });
 
-class Routes extends React.Component {
+class DrawerLinks extends React.Component {
     render() {
         const { classes } = this.props;
 
@@ -44,4 +44,4 @@ class Routes extends React.Component {
     }
 }
 
-export default withStyles(styles)(Routes);
+export default withStyles(styles)(DrawerLinks);
