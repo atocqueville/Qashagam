@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,8 +7,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowBack from '@material-ui/icons/ArrowBack';
 import { withStyles } from '@material-ui/core';
 
 import SignUpForm from '../container/SignUpForm.jsx';
@@ -26,6 +24,9 @@ const styles = theme => ({
     card: {
         [theme.breakpoints.only('xs')]: {
             flex: '1 0 auto'
+        },
+        [theme.breakpoints.up('sm')]: {
+            minWidth: '300px'
         }
     },
     cardContent: {
@@ -48,7 +49,7 @@ class SignUp extends React.Component {
         return (
             <Grid className={classes.grid} style={{ display: 'flex', flex: '1 0 auto' }}>
                 <Grid style={{ display: 'flex', flex: '1 0 auto', alignItems: 'center', justifyContent: 'center' }}>
-                    <Card className={classes.card} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Card className={classes.card}>
                         {firebase.loading && <LinearProgress />}
                         <CardContent classes={{ root: classes.cardContent }}>
                             <SignUpForm onSubmit={this.submitForm} errorCode={firebase.signupError}/>

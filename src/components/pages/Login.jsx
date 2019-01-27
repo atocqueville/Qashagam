@@ -24,6 +24,9 @@ const styles = theme => ({
     card: {
         [theme.breakpoints.only('xs')]: {
             flex: '1 0 auto'
+        },
+        [theme.breakpoints.up('sm')]: {
+            minWidth: '300px'
         }
     },
     cardContent: {
@@ -42,11 +45,11 @@ class Login extends React.Component {
 
     render() {
         const { firebase, classes } = this.props;
-
+        
         return(
             <Grid className={classes.grid} style={{ display: 'flex', flex: '1 0 auto' }}>
                 <Grid style={{ display: 'flex', flex: '1 0 auto', alignItems: 'center', justifyContent: 'center' }}>
-                    <Card className={classes.card} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Card className={classes.card}>
                         {firebase.loading && <LinearProgress />}
                         <CardContent classes={{ root: classes.cardContent }}>
                             <LoginForm onSubmit={this.submitForm} errorCode={firebase.signinError} />

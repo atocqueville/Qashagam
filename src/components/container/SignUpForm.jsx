@@ -28,13 +28,13 @@ const validate = values => {
     if (!values.pass2) {
         errors.pass2 = 'Champ obligatoire';
     } else if (values.pass1 !== values.pass2) {
-        errors.pass2 = 'Les mots de passe ne correspondent pas';
+        errors.pass2 = 'Mots de passe différents';
     }
 
     if (!values.secret) {
         errors.secret = 'Champ obligatoire';
     } else if (values.secret.toLowerCase() !== 'qashagam') {
-        errors.secret = 'Non non, petit scarabée';
+        errors.secret = 'Perdu, petit scarabée';
     }
 
     return errors;

@@ -61,25 +61,22 @@ class LoginForm extends React.Component {
                         />
                     </Grid>
                     
-                    <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '15px' }}>
-                        <Grid container direction='row' style={{ display: 'flex', justifyContent: 'space-around' }}>
-                            <Grid item style={{ display: 'flex', alignItems: 'center' }}>
-                                <Link component={RouterLink} to='/signup' variant='subheading'>
-                                    Créer un compte
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Button variant='contained' color='primary' type='submit'>
-                                    Connexion
-                                </Button>
-                            </Grid>
-                        </Grid>
+                    <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
+                        <Button variant='contained' color='primary' type='submit'>
+                            Connexion
+                        </Button>
                     </Grid>
-
-                    <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '15px' }}>
+                    
+                    {errorCode && <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
                         <Typography color='error'>
                             {errorCode.toString()}
                         </Typography>
+                    </Grid>}
+
+                    <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Link component={RouterLink} to='/signup' variant='subheading'>
+                            Créer un compte
+                        </Link>
                     </Grid>
                 </Grid>
             </form>
