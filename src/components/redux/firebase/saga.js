@@ -3,6 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
+import { ADD_USER_TO_FAMILY } from './constants';
 
 import firebase from './initFirebase';
 
@@ -40,6 +41,7 @@ function* signUp(action) {
     yield delay(1000);
     try {
         var result = yield firebase.auth().createUserWithEmailAndPassword(action.email, action.password);
+        // yield put({ type: ADD_USER_TO_FAMILY, famille: action.famille });
         yield put({ type: SIGN_UP_SUCCESS, result });
         action.history.push('/calendar/resa');
     } catch (error) {

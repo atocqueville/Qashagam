@@ -66,8 +66,8 @@ class LoginForm extends React.Component {
                             Connexion
                         </Button>
                     </Grid>
-                    
-                    {errorCode && <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
+
+                    {errorCode.code && <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
                         <Typography color='error'>
                             {errorCode.toString()}
                         </Typography>

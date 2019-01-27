@@ -35,6 +35,11 @@ export default createMuiTheme({
                 justifyContent: 'space-between'
             }
         },
+        MuiFormControl: {
+            root: {
+                minWidth: '210px'
+            }
+        },
         MuiInput:{
             root: {
                 width: '220px'

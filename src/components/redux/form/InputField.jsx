@@ -7,7 +7,7 @@ const styles = () => ({
     input: {
         height: 12
     }
-})
+});
 
 class InputField extends React.Component {
     static defaultProps ={

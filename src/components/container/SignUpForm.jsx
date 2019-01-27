@@ -8,7 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 
-import TextField from '../redux/form/InputField.jsx';
+import InputField from '../redux/form/InputField.jsx';
+import SelectField from '../redux/form/SelectField.jsx';
 
 const validate = values => {
     const errors = {};
@@ -37,16 +38,15 @@ const validate = values => {
         errors.secret = 'Perdu, petit scarabée';
     }
 
+    if (!values.famille) {
+        errors.famille = 'Champ obligatoire';
+    }
+    
     return errors;
 };
 
 class SignUpForm extends React.Component {
-    static defaultProps = {
-        label: 'default',
-        variant: 'standard',
-        type: 'text'
-    };
-
+    
     render() {
         const { handleSubmit, errorCode } = this.props;
 
@@ -61,8 +61,9 @@ class SignUpForm extends React.Component {
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
                         <Typography variant='display4'> Inscription </Typography>
                     </Grid>
+
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
-                        <TextField
+                        <InputField
                             name='email'
                             label='Adresse e-mail'
                             variant='outlined'
@@ -70,7 +71,7 @@ class SignUpForm extends React.Component {
                         />
                     </Grid>
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
-                        <TextField
+                        <InputField
                             name='pass1'
                             label='Mot de passe'
                             variant='outlined'
@@ -78,7 +79,7 @@ class SignUpForm extends React.Component {
                         />
                     </Grid>
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
-                        <TextField
+                        <InputField
                             name='pass2'
                             label='Confirmation'
                             variant='outlined'
@@ -86,13 +87,23 @@ class SignUpForm extends React.Component {
                         />
                     </Grid>
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
-                        <TextField
+                        <InputField
                             name='secret'
                             label='Nom du bateau'
                             variant='outlined'
                             type='text'
                         />
                     </Grid>
+                    <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
+                        <SelectField
+                            name='famille'
+                            label='Famille'
+                            labelWidth={51}
+                            items={[{id: 'tocqueville', value: 'de Tocqueville'}, {id: 'rigal', value: 'Rigal'}]}
+                            variant='outlined'
+                        />
+                    </Grid>
+
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingTop: '15px' }}>
                         <Button variant='contained' color='primary' type='submit'>
                             S'enregistrer

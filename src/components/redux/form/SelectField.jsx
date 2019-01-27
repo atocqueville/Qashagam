@@ -3,33 +3,52 @@ import { Field } from 'redux-form';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core';
+
+const styles = () => ({
+    input: {
+        height: 50
+    }
+});
 
 class SelectField extends React.Component {
 
     renderSelectField = field => {
         const {
-            input: { onChange, value },
+            input: { onChange, onBlur, value },
             items,
             label,
             meta
         } = field;
         
         return(
-            <FormControl>
-                <InputLabel>{label}</InputLabel>
+            <FormControl
+                variant="outlined"
+                error={meta.touched && meta.invalid}
+            >
+                <InputLabel> {label} </InputLabel>
                 <Select
+                    variant={this.props.variant}
                     value={value}
                     onChange={(event) => {
                         onChange(event);
                     }}
+                    onBlur={onBlur}
+                    input={
+                        <OutlinedInput
+                            labelWidth={this.props.labelWidth}
+                            classes={{ root: this.props.classes.input }}
+                        />
+                    }
                 >
                     {items.map(item => 
                         <MenuItem value={item.id} key={item.id}>{item.value}</MenuItem>
                     )}
                 </Select>
-                {meta.submitFailed && meta.error && <FormHelperText style={{ color:'red' }}>{meta.error}</FormHelperText>}
+                {meta.touched && meta.error && <FormHelperText error> {meta.error} </FormHelperText>}
             </FormControl>
         );
     }
@@ -47,4 +66,4 @@ class SelectField extends React.Component {
     }
 }
 
-export default SelectField;
+export default withStyles(styles)(SelectField);

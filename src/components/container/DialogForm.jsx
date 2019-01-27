@@ -10,7 +10,7 @@ import AttachFile from '@material-ui/icons/AttachFile';
 import SaveIcon from '@material-ui/icons/Save';
 
 import SelectField from '../redux/form/SelectField.jsx';
-import TextField from '../redux/form/InputField.jsx';
+import InputField from '../redux/form/InputField.jsx';
 
 const styles = () => ({
     buttonSuccess: {
@@ -65,13 +65,13 @@ class DialogForm extends React.Component {
                             />
                         </Grid>
                         <Grid item style={{ paddingBottom: '10px' }}>
-                            <TextField
+                            <InputField
                                 name='lieu'
                                 label='Lieu'
                             />
                         </Grid>
                         <Grid item style={{ paddingBottom: '20px' }}>
-                            <TextField
+                            <InputField
                                 name='detail'
                                 label='Detail'
                             />

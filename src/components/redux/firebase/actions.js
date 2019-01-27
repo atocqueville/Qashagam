@@ -7,9 +7,10 @@ export const signIn = (email, password, history) => ({
     history
 });
 
-export const signUp = (email, password, history) => ({
+export const signUp = (email, password, famille, history) => ({
     type: SIGN_UP,
     email,
     password,
+    famille,
     history
 });

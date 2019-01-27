@@ -40,7 +40,7 @@ const styles = theme => ({
 class SignUp extends React.Component {
 
     submitForm = (form) => {
-        this.props.firebaseAction.signUp(form.email, form.pass1, this.props.history);
+        this.props.firebaseAction.signUp(form.email, form.pass1, form.famille, this.props.history);
     }
 
     render() {
