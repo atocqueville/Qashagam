@@ -17,6 +17,10 @@ export default createMuiTheme({
         },
         display3: {
             fontSize: '1.5rem'
+        },
+        display4: {
+            fontSize: '2rem',
+            color: '#000'
         }
     },
 

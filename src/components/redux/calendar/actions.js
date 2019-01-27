@@ -1,4 +1,4 @@
-import { UPDATE_RESERVATION_DATES, DELETE_RESERVATION_DATES } from '../constants/Calendar';
+import { UPDATE_RESERVATION_DATES, DELETE_RESERVATION_DATES } from './constants';
 
 export const updateReservationDates = date => ({
     type: UPDATE_RESERVATION_DATES,

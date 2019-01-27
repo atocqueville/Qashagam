@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import calendarReducer from './reducers/CalendarReducer';
-import couchDBReducer from './reducers/CouchDBReducer';
+import calendar from './calendar/reducer';
+import firebase from './firebase/reducer';
 
 export default combineReducers({
-    calendarReducer,
-    couchDBReducer,
+    calendar,
+    firebase,
     form: formReducer
 });

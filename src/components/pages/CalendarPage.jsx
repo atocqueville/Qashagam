@@ -5,8 +5,8 @@ import { formValueSelector } from 'redux-form';
 import { Typography, Grid, Dialog, Slide } from '@material-ui/core';
 import dateFns from 'date-fns';
 
-import * as CalendarAction from '../redux/actions/CalendarAction';
-import * as CouchDBAction from '../redux/actions/CouchDBAction';
+import * as CalendarAction from '../redux/calendar/actions';
+// import * as CouchDBAction from '../redux/actions/CouchDBAction';
 
 import ColoredSquare from '../atoms/ColoredSquare.jsx';
 
@@ -22,8 +22,8 @@ class MainPage extends React.Component {
     constructor(props) {
         super(props);
         
-        props.dbAction.getAllTrips();
-        props.dbAction.signUp();
+        // props.dbAction.getAllTrips();
+        // props.dbAction.signUp();
     }
 
     state = {
@@ -48,7 +48,7 @@ class MainPage extends React.Component {
         trip.endDate = this.props.calendarReducer.endDate;
         trip._id = id;
 
-        this.props.dbAction.addNewTrip(trip);
+        // this.props.dbAction.addNewTrip(trip);
     }
 
     openDialog = () => {
@@ -62,15 +62,15 @@ class MainPage extends React.Component {
             dialogOpen: false
         });
         this.props.calendarAction.deleteReservationDates();
-        this.props.dbAction.resetState();
-        this.props.dbAction.getAllTrips();
+        // this.props.dbAction.resetState();
+        // this.props.dbAction.getAllTrips();
     }
 
     render() {
         const { calendarReducer, dbReducer } = this.props;
 
         return (
-            <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '56px', flexWrap: 'nowrap', marginLeft: 'auto', marginRight: 'auto' }}>
+            <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '56px' }}>
                 <Grid item style={{  display: 'flex', justifyContent: 'center', padding: '18px' }}>
                     <Grid container direction="row" style={{ justifyContent: 'space-around', maxWidth: '620px', width: '100%' }}>
                         <Grid item>
@@ -98,7 +98,7 @@ class MainPage extends React.Component {
                         updateDates={this.updateDates}
                         startDate={calendarReducer.startDate}
                         endDate={calendarReducer.endDate}
-                        trips={this.props.trips}
+                        trips={undefined}
                     />
                 </Grid>
                         
@@ -119,7 +119,7 @@ class MainPage extends React.Component {
                     <DialogForm
                         closeDialog={this.closeDialog}
                         onSubmit={this.submitTrip}
-                        dbReducer={dbReducer}
+                        // dbReducer={dbReducer}
                     />
                 </Dialog>
             </Grid>
@@ -130,15 +130,15 @@ class MainPage extends React.Component {
 const selector = formValueSelector('dialogForm');
 
 const mapStateToProps = (state) => ({
-    calendarReducer: state.calendarReducer,
-    trips: state.couchDBReducer.trips,
+    calendarReducer: state.calendar,
+    // trips: state.couchDBReducer.trips,
     newTrip: selector(state, 'famille', 'lieu', 'detail'),
-    dbReducer: state.couchDBReducer
+    // dbReducer: state.couchDBReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({
     calendarAction: bindActionCreators(CalendarAction, dispatch),
-    dbAction: bindActionCreators(CouchDBAction, dispatch)
+    // dbAction: bindActionCreators(CouchDBAction, dispatch)
 });
 
 export default connect(
