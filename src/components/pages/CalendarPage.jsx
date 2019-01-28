@@ -68,7 +68,7 @@ class MainPage extends React.Component {
 
     render() {
         const { calendarReducer } = this.props;
-
+        
         return (
             <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '56px' }}>
                 <Grid item style={{  display: 'flex', justifyContent: 'center', padding: '18px' }}>

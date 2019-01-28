@@ -2,8 +2,11 @@ import Cookies from 'js-cookie';
 
 import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
+import { UPDATE_USER } from './constants';
 
 import Error from '../../classes/Error';
+
+import firebase from './initFirebase';
 
 const initialState = {
     trips: undefined,
@@ -13,11 +16,23 @@ const initialState = {
     failure: false,
 
     signupError: new Error(),
-    signinError: new Error()
+    signinError: new Error(),
+
+    app: firebase,
+    user: undefined,
+    authenticated: false
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
+
+    case UPDATE_USER: {
+        return {
+            ...state,
+            user: action.user,
+            authenticated: action.auth
+        };
+    }
 
     case SIGN_UP: {
         return {

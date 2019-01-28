@@ -7,3 +7,5 @@ export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
 
 export const ADD_USER_TO_FAMILY = 'ADD_USER_TO_FAMILY';
+
+export const UPDATE_USER = 'UPDATE_USER';

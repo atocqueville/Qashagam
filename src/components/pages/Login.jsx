@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -40,7 +39,7 @@ const styles = theme => ({
 class Login extends React.Component {
 
     submitForm = (form) => {
-        this.props.firebaseAction.signIn(form.email, form.password, this.props.history);
+        this.props.firebaseAction.signIn(form.email, form.password);
     }
 
     render() {
@@ -69,7 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
     firebaseAction: bindActionCreators(FirebaseAction, dispatch)
 });
 
-export default withRouter(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withStyles(styles)(Login)));
+)(withStyles(styles)(Login));
