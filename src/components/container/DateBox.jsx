@@ -1,7 +1,7 @@
 import React from 'react';
 import dateFns from 'date-fns';
 import { withStyles } from '@material-ui/core/styles';
-import DeleteIcon from '@material-ui/icons/Delete';
+import UndoIcon from '@material-ui/icons/Undo';
 import CreateIcon from '@material-ui/icons/Create';
 import { Typography, Paper, Grid, Button } from '@material-ui/core';
 
@@ -41,17 +41,17 @@ class DateBox extends React.Component {
 
                     <Grid item style={{ display: 'flex', justifyContent: 'space-between', padding: '0 12px' }}>
                         <Button
-                            variant="contained"
-                            color="secondary"
+                            variant='contained'
+                            color='secondary'
                             onClick={this.props.deleteAction}
                             disabled={!this.props.startDate}
                         >
                             Annuler
-                            <DeleteIcon className={classes.icon}/>
+                            <UndoIcon className={classes.icon}/>
                         </Button>
                         <Button
-                            variant="contained"
-                            color="primary"
+                            variant='contained'
+                            color='primary'
                             onClick={this.props.continueAction}
                             disabled={!this.props.endDate}
                         >

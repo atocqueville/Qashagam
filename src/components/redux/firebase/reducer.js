@@ -1,12 +1,9 @@
-import Cookies from 'js-cookie';
-
 import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
 import { UPDATE_USER } from './constants';
+import { GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE } from './constants';
 
 import Error from '../../classes/Error';
-
-import firebase from './initFirebase';
 
 const initialState = {
     trips: undefined,
@@ -18,9 +15,8 @@ const initialState = {
     signupError: new Error(),
     signinError: new Error(),
 
-    app: firebase,
-    user: undefined,
-    authenticated: false
+    authenticated: false,
+    famille: undefined
 };
 
 export default function(state = initialState, action) {
@@ -29,7 +25,6 @@ export default function(state = initialState, action) {
     case UPDATE_USER: {
         return {
             ...state,
-            user: action.user,
             authenticated: action.auth
         };
     }
@@ -62,7 +57,6 @@ export default function(state = initialState, action) {
         };
     }
     case SIGN_IN_SUCCESS: {
-        Cookies.set('pd', 'lol');
         return {
             ...state,
             loading: false,
@@ -74,6 +68,19 @@ export default function(state = initialState, action) {
             ...state,
             loading: false,
             signinError: new Error(action.error.code)
+        };
+    }
+
+    case GET_FAMILY_SUCCESS: {
+        return {
+            ...state,
+            famille: action.result.famille
+        };
+    }
+    case GET_FAMILY_FAILURE: {
+        return {
+            ...state,
+            famille: 'none'
         };
     }
 

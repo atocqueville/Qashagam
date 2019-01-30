@@ -10,18 +10,16 @@ export default createMuiTheme({
     },
 
     typography: {
+        useNextVariants: true,
         fontFamily: 'Roboto',
-        display2: {
-            fontSize: '1rem',
-            textTransform: 'capitalize'
-        },
-        display3: {
-            fontSize: '1.5rem'
-        },
-        display4: {
-            fontSize: '2rem',
-            color: '#000'
-        }
+        opacity: 0.6
+        // h2: {
+        //     fontSize: '1.5rem'
+        // },
+        // h3: {
+        //     fontSize: '1rem',
+        //     textTransform: 'capitalize'
+        // }
     },
 
     overrides: {

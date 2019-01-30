@@ -132,7 +132,7 @@ class Day extends React.Component {
                                 </Typography>
                             </Grid>
                         
-                            <Grid id="LFEIGHBFEI" item style={{ display: 'flex', flex: '1 0 auto', background: this.colorOccupation(fullDate, startDate, endDate, trips), height: '5px' }} />
+                            <Grid id='LFEIGHBFEI' item style={{ display: 'flex', flex: '1 0 auto', background: this.colorOccupation(fullDate, startDate, endDate, trips), height: '5px' }} />
                         </Grid>
                     </Grid>
                 </Button>
@@ -142,14 +142,14 @@ class Day extends React.Component {
                     autoHideDuration={1500}
                     open={openSnack}
                     onClose={this.handleCloseSnack}
-                    message={<span id="message-id">Conflit de dates</span>}
+                    message={<span id='message-id'>Conflit de dates</span>}
                 />
 
                 <Dialog
                     open={openModal}
                     onClose={this.handleCloseModal}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
+                    aria-labelledby='alert-dialog-title'
+                    aria-describedby='alert-dialog-description'
                     maxWidth='md'
                     scroll='body'
                 >

@@ -26,7 +26,7 @@ class SelectField extends React.Component {
         
         return(
             <FormControl
-                variant="outlined"
+                variant='outlined'
                 error={meta.touched && meta.invalid}
             >
                 <InputLabel> {label} </InputLabel>

@@ -6,9 +6,9 @@ class TripsPage extends React.Component {
     render() {
         
         return (
-            <Grid container direction='column' style={{ display: 'flex', justifyContent: 'center', paddingTop: '64px' }}>
+            <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '64px' }}>
                 <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Typography variant='display4'>
+                    <Typography variant='h1'>
                         WIP
                     </Typography>
                 </Grid>

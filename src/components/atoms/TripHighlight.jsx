@@ -37,38 +37,38 @@ class TripHighlight extends React.Component {
 
         return (
             <Card>
-                <CardMedia title="photo" image={tripWP} className={classes.media} />
+                <CardMedia title='photo' image={tripWP} className={classes.media} />
 
                 <CardContent className={classes.card}>
-                    <Typography gutterBottom variant="display3">
+                    <Typography gutterBottom variant='display3'>
                         Détail du voyage
                     </Typography>
-                    <Grid container direction="column">
+                    <Grid container direction='column'>
                         <Grid item>
-                            <Typography variant="body2" style={{ display: 'inline-block', paddingRight: '6px' }}> Famille: </Typography>
-                            <Typography variant="display2" style={{ display: 'inline-block' }}> {trip.famille} </Typography>
+                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Famille: </Typography>
+                            <Typography variant='display2' style={{ display: 'inline-block' }}> {trip.famille} </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="body2" style={{ display: 'inline-block', paddingRight: '6px' }}> Lieu: </Typography>
-                            <Typography variant="display2" style={{ display: 'inline-block' }}> {trip.lieu} </Typography>
+                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Lieu: </Typography>
+                            <Typography variant='display2' style={{ display: 'inline-block' }}> {trip.lieu} </Typography>
                         </Grid>
                         
                         <Grid item>
-                            <Typography variant="body2" style={{ display: 'inline-block', paddingRight: '6px' }}> Début: </Typography>
-                            <Typography variant="display2" style={{ display: 'inline-block' }}> {dateFns.format(trip.startDate, 'MM/DD/YYYY')} </Typography>
+                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Début: </Typography>
+                            <Typography variant='display2' style={{ display: 'inline-block' }}> {dateFns.format(trip.startDate, 'MM/DD/YYYY')} </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="body2" style={{ display: 'inline-block', paddingRight: '6px' }}> Fin: </Typography>
-                            <Typography variant="display2" style={{ display: 'inline-block' }}> {dateFns.format(trip.endDate, 'MM/DD/YYYY')} </Typography>
+                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Fin: </Typography>
+                            <Typography variant='display2' style={{ display: 'inline-block' }}> {dateFns.format(trip.endDate, 'MM/DD/YYYY')} </Typography>
                         </Grid>
 
                         <Grid item>
-                            <Typography variant="body2" style={{ display: 'inline-block', paddingRight: '6px' }}> Détail: </Typography>
-                            <Typography variant="display2" style={{ display: 'inline-block' }}> {trip.detail} </Typography>
+                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Détail: </Typography>
+                            <Typography variant='display2' style={{ display: 'inline-block' }}> {trip.detail} </Typography>
                         </Grid>
                     </Grid>
                     <CardActions>
-                        <Button onClick={this.props.handleClose} color="primary" autoFocus> Fermer </Button>
+                        <Button onClick={this.props.handleClose} color='primary' autoFocus> Fermer </Button>
                     </CardActions>
                 </CardContent>
             </Card>

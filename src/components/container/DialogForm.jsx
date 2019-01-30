@@ -92,14 +92,14 @@ class DialogForm extends React.Component {
                 <DialogActions style={{ paddingLeft: '10px', paddingBottom: '10px', paddingRight: '10px' }}>
                     <Button
                         onClick={this.props.closeDialog}
-                        color="primary"
-                        size="large"
+                        color='primary'
+                        size='large'
                     >
                         {dbReducer.success ? 'Fermer' : 'Annuler'}
                     </Button>
                     <Button
-                        color="primary"
-                        variant="fab"
+                        color='primary'
+                        variant='fab'
                         disabled={dbReducer.loading || dbReducer.success}
                         className={buttonClassname}
                         type='submit'

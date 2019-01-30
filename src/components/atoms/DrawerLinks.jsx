@@ -25,17 +25,17 @@ class DrawerLinks extends React.Component {
         return(
             <div className={classes.root}>
                 <List subheader={<ListSubheader> Menu </ListSubheader>}>
-                    <ListItem button component={Link} to='/calendar/resa'>
+                    <ListItem button component={Link} to='/calendar/reservation'>
                         <ListItemIcon>
                             <EventIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Calendrier" />
+                        <ListItemText primary='Calendrier' />
                     </ListItem>
                     <ListItem button component={Link} to='/calendar/trips'>
                         <ListItemIcon>
                             <TimelineIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Voyages" />
+                        <ListItemText primary='Voyages' />
                     </ListItem>
                 </List>
                 <Divider />

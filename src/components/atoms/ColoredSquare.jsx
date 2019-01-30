@@ -5,8 +5,8 @@ class ColoredSquare extends React.Component {
         const { color } = this.props;
 
         return (
-            <svg width="20" height="5">
-                <rect width="20" height="3" fill={color} />
+            <svg width='20' height='5'>
+                <rect width='20' height='3' fill={color} />
             </svg>
         );
     }

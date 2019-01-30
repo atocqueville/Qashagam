@@ -12,7 +12,7 @@ import TextField from '../redux/form/InputField.jsx';
 const validate = values => {
     const errors = {};
 
-    let mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let mailRegex = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!values.email) {
         errors.email = 'Champ obligatoire';
@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
             <form onSubmit={handleSubmit}>
                 <Grid container direction='column'>
                     <Grid item style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-                        <Typography variant='display4'> Authentification </Typography>
+                        <Typography variant='h4'> Authentification </Typography>
                     </Grid>
 
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>
@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
                     </Grid>}
 
                     <Grid item style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Link component={RouterLink} to='/signup' variant='subheading'>
+                        <Link component={RouterLink} to='/signup' variant='subtitle1'>
                             Créer un compte
                         </Link>
                     </Grid>

@@ -14,7 +14,7 @@ import SelectField from '../redux/form/SelectField.jsx';
 const validate = values => {
     const errors = {};
 
-    let mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let mailRegex = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!values.email) {
         errors.email = 'Champ obligatoire';
@@ -54,12 +54,12 @@ class SignUpForm extends React.Component {
             <form onSubmit={handleSubmit}>
                 <Grid container direction='column'>
                     <Grid item>
-                        <IconButton color='inherit' component={Link} to="/">
+                        <IconButton color='inherit' component={Link} to='/'>
                             <ArrowBack />
                         </IconButton>
                     </Grid>
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '20px' }}>
-                        <Typography variant='display4'> Inscription </Typography>
+                        <Typography variant='h4'> Inscription </Typography>
                     </Grid>
 
                     <Grid item style={{ display: 'flex', justifyContent: 'center', paddingBottom: '15px' }}>

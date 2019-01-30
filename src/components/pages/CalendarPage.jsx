@@ -15,7 +15,7 @@ import DateBox from '../container/DateBox.jsx';
 import DialogForm from '../container/DialogForm.jsx';
 
 function Transition(props) {
-    return <Slide direction="up" {...props} />;
+    return <Slide direction='up' {...props} />;
 }
 
 class MainPage extends React.Component {
@@ -72,20 +72,20 @@ class MainPage extends React.Component {
         return (
             <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '56px' }}>
                 <Grid item style={{  display: 'flex', justifyContent: 'center', padding: '18px' }}>
-                    <Grid container direction="row" style={{ justifyContent: 'space-around', maxWidth: '620px', width: '100%' }}>
+                    <Grid container direction='row' style={{ justifyContent: 'space-around', maxWidth: '620px', width: '100%' }}>
                         <Grid item>
-                            <Typography variant='display1'>
+                            <Typography variant='h4'>
                                 Calendrier
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Grid container direction="column">
+                            <Grid container direction='column'>
                                 <Grid item>
-                                    <ColoredSquare color="blue" />
+                                    <ColoredSquare color='blue' />
                                     <Typography style={{ display: 'inline-block', paddingLeft: '6px' }}> Tocqueville </Typography>
                                 </Grid>
                                 <Grid item>
-                                    <ColoredSquare color="red" />
+                                    <ColoredSquare color='red' />
                                     <Typography style={{ display: 'inline-block', paddingLeft: '6px' }}> Rigal </Typography>
                                 </Grid>
                             </Grid>

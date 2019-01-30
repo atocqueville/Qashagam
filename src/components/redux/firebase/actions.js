@@ -1,5 +1,4 @@
-import { SIGN_IN, SIGN_UP } from './constants';
-import { UPDATE_USER } from './constants';
+import { SIGN_IN, SIGN_UP, SIGN_OUT, UPDATE_USER, GET_FAMILY } from './constants';
 
 export const signIn = (email, password) => ({
     type: SIGN_IN,
@@ -14,8 +13,16 @@ export const signUp = (email, password, famille) => ({
     famille
 });
 
-export const updateUser = (user, auth) => ({
+export const signOut = () => ({
+    type: SIGN_OUT
+});
+
+export const updateUser = (auth) => ({
     type: UPDATE_USER,
-    user,
     auth
+});
+
+export const getFamily = (user) => ({
+    type: GET_FAMILY,
+    user
 });
