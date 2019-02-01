@@ -10,3 +10,5 @@ npm-debug.log
 
 #build
 /dist
+
+/CREDENTIALS.js

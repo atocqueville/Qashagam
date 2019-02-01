@@ -2,6 +2,7 @@ import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
 import { UPDATE_USER } from './constants';
 import { GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE } from './constants';
+import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE } from './constants';
 
 import Error from '../../classes/Error';
 
@@ -91,32 +92,32 @@ export default function(state = initialState, action) {
     //     };
     // }
 
-    // case ADD_NEW_TRIP: {
-    //     return {
-    //         ...state,
-    //         loading: true,
-    //         success: false,
-    //         failure: false
-    //     };
-    // }
+    case ADD_TRIP: {
+        return {
+            ...state,
+            loading: true,
+            success: false,
+            failure: false
+        };
+    }
 
-    // case ADD_NEW_TRIP_SUCCEEDED: {
-    //     return {
-    //         ...state,
-    //         loading: false,
-    //         success: true,
-    //         failure: false
-    //     };
-    // }
+    case ADD_TRIP_SUCCESS: {
+        return {
+            ...state,
+            loading: false,
+            success: true,
+            failure: false
+        };
+    }
 
-    // case ADD_NEW_TRIP_FAILED: {
-    //     return {
-    //         ...state,
-    //         loading: false,
-    //         success: false,
-    //         failure: true
-    //     };
-    // }
+    case ADD_TRIP_FAILURE: {
+        return {
+            ...state,
+            loading: false,
+            success: false,
+            failure: true
+        };
+    }
 
     // case RESET_STATE: {
     //     return {

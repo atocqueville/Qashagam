@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --open --mode development",
-		"build": "webpack --mode production"
+		"dist": "webpack --mode production"
 	},
 	"keywords": [],
 	"author": "",
@@ -32,6 +32,7 @@
 	"dependencies": {
 		"@material-ui/core": "^3.9.1",
 		"@material-ui/icons": "^3.0.2",
+		"axios": "^0.18.0",
 		"date-fns": "^1.29.0",
 		"firebase": "^5.8.0",
 		"react": "^16.5.2",

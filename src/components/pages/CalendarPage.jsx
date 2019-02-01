@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { formValueSelector } from 'redux-form';
 import { Typography, Grid, Dialog, Slide } from '@material-ui/core';
-import dateFns from 'date-fns';
 
 import * as CalendarAction from '../redux/calendar/actions';
-// import * as CouchDBAction from '../redux/actions/CouchDBAction';
+import * as FirebaseAction from '../redux/firebase/actions';
 
 import ColoredSquare from '../atoms/ColoredSquare.jsx';
 
@@ -18,12 +16,11 @@ function Transition(props) {
     return <Slide direction='up' {...props} />;
 }
 
-class MainPage extends React.Component {
+class CalendarPage extends React.Component {
     constructor(props) {
         super(props);
         
         // props.dbAction.getAllTrips();
-        // props.dbAction.signUp();
     }
 
     state = {
@@ -38,17 +35,16 @@ class MainPage extends React.Component {
         this.props.calendarAction.deleteReservationDates();
     }
 
-    submitTrip = () => {
-        var trip = this.props.newTrip;
+    submitTrip = (form) => {
+        let trip = {
+            startDate: this.props.calendarReducer.startDate,
+            endDate: this.props.calendarReducer.endDate,
+            famille: this.props.firebase.famille,
+            location: form.lieu,
+            detail: form.detail
+        };
 
-        // generate ID
-        var id = `${trip.famille}_${dateFns.format(new Date())}`;
-
-        trip.startDate = this.props.calendarReducer.startDate;
-        trip.endDate = this.props.calendarReducer.endDate;
-        trip._id = id;
-
-        // this.props.dbAction.addNewTrip(trip);
+        this.props.firebaseAction.addTrip(trip);
     }
 
     openDialog = () => {
@@ -67,7 +63,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        const { calendarReducer } = this.props;
+        const { calendarReducer, firebase } = this.props;
         
         return (
             <Grid container direction='column' style={{ display: 'flex', flex: '1 0 auto', paddingTop: '56px' }}>
@@ -119,7 +115,7 @@ class MainPage extends React.Component {
                     <DialogForm
                         closeDialog={this.closeDialog}
                         onSubmit={this.submitTrip}
-                        // dbReducer={dbReducer}
+                        firebase={firebase}
                     />
                 </Dialog>
             </Grid>
@@ -127,21 +123,18 @@ class MainPage extends React.Component {
     }
 }
 
-const selector = formValueSelector('dialogForm');
-
 const mapStateToProps = (state) => ({
     calendarReducer: state.calendar,
     // trips: state.couchDBReducer.trips,
-    newTrip: selector(state, 'famille', 'lieu', 'detail'),
-    // dbReducer: state.couchDBReducer
+    firebase: state.firebase
 });
 
 const mapDispatchToProps = (dispatch) => ({
     calendarAction: bindActionCreators(CalendarAction, dispatch),
-    // dbAction: bindActionCreators(CouchDBAction, dispatch)
+    firebaseAction: bindActionCreators(FirebaseAction, dispatch)
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MainPage);
+)(CalendarPage);
