@@ -8,7 +8,8 @@ import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
 import { SIGN_OUT } from './constants';
 import { GET_FAMILY, GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE } from './constants';
-import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE } from './constants';
+import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE, ADD_TRIP_CLEAR } from './constants';
+import { DELETE_RESERVATION_DATES } from '../calendar/constants';
 
 import firebase from './initFirebase';
 import { cse } from '../../../../CREDENTIALS';
@@ -32,8 +33,18 @@ import { cse } from '../../../../CREDENTIALS';
 function* addTrip(action) {
     try {
         let req = yield axios.get(`https://www.googleapis.com/customsearch/v1?key=${cse.apiKey}&cx=017756924603223828764:g8c3_0ujzpe&q=${action.trip.location}&searchType=image&imgColorType=color`);
-        let image = yield axios({ method:'get', url: req.data.items[0].link, responseType:'blob' });
-        let uploadTask = yield firebase.storage().ref().child(dateFns.format(new Date())).put(image.data);
+        
+        let blobFile;
+        for (let i = 0; i < 10; i++) {
+            try {
+                blobFile = yield axios({ method: 'get', url: req.data.items[i].link, responseType: 'blob' });
+                break;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        let uploadTask = yield firebase.storage().ref().child(dateFns.format(new Date())).put(blobFile.data);
         let fileURL = yield uploadTask.ref.getDownloadURL();
 
         yield firebase.firestore().collection('trips').add({
@@ -41,14 +52,14 @@ function* addTrip(action) {
             url: fileURL
         });
 
-        yield put({
-            type: ADD_TRIP_SUCCESS
-        });
+        yield put({ type: ADD_TRIP_SUCCESS });
     } catch (e) {
-        yield put({
-            type: ADD_TRIP_FAILURE
-        });
+        yield put({ type: ADD_TRIP_FAILURE });
     }
+
+    yield delay(1200);
+    yield put({ type: ADD_TRIP_CLEAR });
+    yield put({ type: DELETE_RESERVATION_DATES });    
 }
 
 function* signUp(action) {

@@ -16,3 +16,4 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const ADD_TRIP = 'ADD_TRIP';
 export const ADD_TRIP_SUCCESS = 'ADD_TRIP_SUCCESS';
 export const ADD_TRIP_FAILURE = 'ADD_TRIP_FAILURE';
+export const ADD_TRIP_CLEAR = 'ADD_TRIP_CLEAR';

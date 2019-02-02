@@ -48,15 +48,10 @@ class CalendarPage extends React.Component {
     }
 
     openDialog = () => {
-        this.setState({
-            dialogOpen: true
-        });
+        this.props.calendarAction.openDialogForm();
     }
 
     closeDialog = () => {
-        this.setState({
-            dialogOpen: false
-        });
         this.props.calendarAction.deleteReservationDates();
         // this.props.dbAction.resetState();
         // this.props.dbAction.getAllTrips();
@@ -108,7 +103,7 @@ class CalendarPage extends React.Component {
                 </Grid>
     
                 <Dialog
-                    open={this.state.dialogOpen}
+                    open={this.props.calendarReducer.dialogFormOpen}
                     TransitionComponent={Transition}
                     onClose={this.closeDialog}
                 >

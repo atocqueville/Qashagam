@@ -16,10 +16,14 @@ const styles = () => ({
             backgroundColor: green[700],
         },
     },
+    wrapper: {
+        position: 'relative',
+    },
     fabProgress: {
         color: green[500],
         position: 'absolute',
-        left: 230
+        left: -6,
+        top: -6
     }
 });
 
@@ -69,15 +73,17 @@ class DialogForm extends React.Component {
                     >
                         {firebase.success ? 'Fermer' : 'Annuler'}
                     </Button>
-                    <Fab
-                        color='primary'
-                        disabled={firebase.loading || firebase.success}
-                        className={buttonClassname}
-                        type='submit'
-                    >
-                        {firebase.success ? <CheckIcon /> : <SaveIcon />}
-                    </Fab>
-                    {firebase.loading && <CircularProgress size={68} className={classes.fabProgress} />}
+                    <div className={classes.wrapper}>
+                        <Fab
+                            color='primary'
+                            disabled={firebase.loading}
+                            className={buttonClassname}
+                            type='submit'
+                        >
+                            {firebase.success ? <CheckIcon /> : <SaveIcon />}
+                        </Fab>
+                        {firebase.loading && <CircularProgress size={68} className={classes.fabProgress} />}
+                    </div>
                 </DialogActions>
             </form>
         );

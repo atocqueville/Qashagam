@@ -2,7 +2,7 @@ import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
 import { UPDATE_USER } from './constants';
 import { GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE } from './constants';
-import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE } from './constants';
+import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE, ADD_TRIP_CLEAR } from './constants';
 
 import Error from '../../classes/Error';
 
@@ -100,7 +100,6 @@ export default function(state = initialState, action) {
             failure: false
         };
     }
-
     case ADD_TRIP_SUCCESS: {
         return {
             ...state,
@@ -109,13 +108,20 @@ export default function(state = initialState, action) {
             failure: false
         };
     }
-
     case ADD_TRIP_FAILURE: {
         return {
             ...state,
             loading: false,
             success: false,
             failure: true
+        };
+    }
+    case ADD_TRIP_CLEAR: {
+        return {
+            ...state,
+            loading: false,
+            success: false,
+            failure: false
         };
     }
 

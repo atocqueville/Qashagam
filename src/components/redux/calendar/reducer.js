@@ -1,10 +1,11 @@
-import { UPDATE_RESERVATION_DATES, DELETE_RESERVATION_DATES } from './constants';
+import { UPDATE_RESERVATION_DATES, DELETE_RESERVATION_DATES, OPEN_DIALOG_FORM } from './constants';
 
 import dateFns from 'date-fns';
 
 const initialState = {
     startDate: undefined,
-    endDate: undefined
+    endDate: undefined,
+    dialogFormOpen: false
 };
 
 export default function(state = initialState, action) {
@@ -36,7 +37,15 @@ export default function(state = initialState, action) {
         return {
             ...state,
             startDate: undefined,
-            endDate: undefined
+            endDate: undefined,
+            dialogFormOpen: false
+        };
+    }
+
+    case OPEN_DIALOG_FORM: {
+        return {
+            ...state,
+            dialogFormOpen: true
         };
     }
 
