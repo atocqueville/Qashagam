@@ -42,10 +42,8 @@ class Day extends React.Component {
         if (isAfter(startDate, date)) [newStartDate, newEndDate] = [newEndDate, newStartDate];
 
         if (trips) {
-            trips.forEach(element => {
-                var _startDate = element.doc.startDate;
-                var _endDate = element.doc.endDate;
-                isOverlapping = (areRangesOverlapping(_startDate, _endDate, newStartDate, newEndDate) || (isWithinRange(newStartDate, _startDate, _endDate)));
+            trips.forEach(trip => {
+                isOverlapping = (areRangesOverlapping(trip.startDate, trip.endDate, newStartDate, newEndDate) || (isWithinRange(newStartDate, trip.startDate, trip.endDate)));
             });
         }
 
@@ -70,11 +68,9 @@ class Day extends React.Component {
         var family;
         
         if (trips) {
-            trips.forEach(element => {
-                var _startDate = element.doc.startDate;
-                var _endDate = element.doc.endDate;
-                if (isWithinRange(date, _startDate, _endDate)) {
-                    family = element.doc.famille;
+            trips.forEach(trip => {
+                if (isWithinRange(date, trip.startDate, trip.endDate)) {
+                    family = trip.famille;
                 }
             });
         }

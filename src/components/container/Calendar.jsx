@@ -72,11 +72,9 @@ class Calendar extends React.Component {
                 const cloneDay = day;
 
                 if (trips) {
-                    trips.forEach(element => {
-                        var _startDate = element.doc.startDate;
-                        var _endDate = element.doc.endDate;
-                        if (dateFns.isWithinRange(cloneDay, _startDate, _endDate)) {
-                            associatedTrip = element.doc;
+                    trips.forEach(trip => {
+                        if (dateFns.isWithinRange(cloneDay, trip.startDate, trip.endDate)) {
+                            associatedTrip = trip;
                         }
                     });
                 }

@@ -1,7 +1,10 @@
+import dateFns from 'date-fns';
+
 import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
 import { UPDATE_USER } from './constants';
 import { GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE } from './constants';
+import { GET_TRIPS_SUCCESS } from './constants';
 import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE, ADD_TRIP_CLEAR } from './constants';
 
 import Error from '../../classes/Error';
@@ -85,12 +88,17 @@ export default function(state = initialState, action) {
         };
     }
 
-    // case GET_ALL_TRIPS_SUCCEEDED: {
-    //     return {
-    //         ...state,
-    //         trips: action.trips
-    //     };
-    // }
+    case GET_TRIPS_SUCCESS: {
+        action.trips.forEach(trip => {
+            trip.startDate = dateFns.parse(trip.startDate.seconds*1000);
+            trip.endDate = dateFns.parse(trip.endDate.seconds*1000);
+        });
+        
+        return {
+            ...state,
+            trips: action.trips
+        };
+    }
 
     case ADD_TRIP: {
         return {
@@ -124,15 +132,6 @@ export default function(state = initialState, action) {
             failure: false
         };
     }
-
-    // case RESET_STATE: {
-    //     return {
-    //         ...state,
-    //         loading: false,
-    //         success: false,
-    //         failure: false
-    //     };
-    // }
 
     default:
         return state;

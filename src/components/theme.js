@@ -11,15 +11,7 @@ export default createMuiTheme({
 
     typography: {
         useNextVariants: true,
-        fontFamily: 'Roboto',
-        opacity: 0.6
-        // h2: {
-        //     fontSize: '1.5rem'
-        // },
-        // h3: {
-        //     fontSize: '1rem',
-        //     textTransform: 'capitalize'
-        // }
+        fontFamily: 'Roboto'
     },
 
     overrides: {

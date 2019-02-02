@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_UP, SIGN_OUT, UPDATE_USER, GET_FAMILY, ADD_TRIP } from './constants';
+import { SIGN_IN, SIGN_UP, SIGN_OUT, UPDATE_USER, GET_FAMILY, ADD_TRIP, GET_TRIPS } from './constants';
 
 export const signIn = (email, password) => ({
     type: SIGN_IN,
@@ -30,4 +30,8 @@ export const getFamily = (user) => ({
 export const addTrip = (trip) => ({
     type: ADD_TRIP,
     trip
+});
+
+export const getTrips = () => ({
+    type: GET_TRIPS
 });

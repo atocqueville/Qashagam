@@ -20,7 +20,7 @@ class CalendarPage extends React.Component {
     constructor(props) {
         super(props);
         
-        // props.dbAction.getAllTrips();
+        props.firebaseAction.getTrips();
     }
 
     state = {
@@ -53,7 +53,6 @@ class CalendarPage extends React.Component {
 
     closeDialog = () => {
         this.props.calendarAction.deleteReservationDates();
-        // this.props.dbAction.resetState();
         // this.props.dbAction.getAllTrips();
     }
 
@@ -89,7 +88,7 @@ class CalendarPage extends React.Component {
                         updateDates={this.updateDates}
                         startDate={calendarReducer.startDate}
                         endDate={calendarReducer.endDate}
-                        trips={undefined}
+                        trips={firebase.trips}
                     />
                 </Grid>
                         
@@ -120,7 +119,6 @@ class CalendarPage extends React.Component {
 
 const mapStateToProps = (state) => ({
     calendarReducer: state.calendar,
-    // trips: state.couchDBReducer.trips,
     firebase: state.firebase
 });
 

@@ -17,3 +17,7 @@ export const ADD_TRIP = 'ADD_TRIP';
 export const ADD_TRIP_SUCCESS = 'ADD_TRIP_SUCCESS';
 export const ADD_TRIP_FAILURE = 'ADD_TRIP_FAILURE';
 export const ADD_TRIP_CLEAR = 'ADD_TRIP_CLEAR';
+
+export const GET_TRIPS = 'GET_TRIPS';
+export const GET_TRIPS_SUCCESS = 'GET_TRIPS_SUCCESS';
+export const GET_TRIPS_FAILURE = 'GET_TRIPS_FAILURE';

@@ -4,48 +4,54 @@ import dateFns from 'date-fns';
 import { delay } from 'redux-saga';
 import { put, takeLatest } from 'redux-saga/effects';
 
-import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from './constants';
-import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
-import { SIGN_OUT } from './constants';
-import { GET_FAMILY, GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE } from './constants';
-import { ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE, ADD_TRIP_CLEAR } from './constants';
 import { DELETE_RESERVATION_DATES } from '../calendar/constants';
+import {
+    SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE,
+    SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE,
+    SIGN_OUT,
+    GET_FAMILY, GET_FAMILY_SUCCESS, GET_FAMILY_FAILURE,
+    ADD_TRIP, ADD_TRIP_SUCCESS, ADD_TRIP_FAILURE, ADD_TRIP_CLEAR,
+    GET_TRIPS, GET_TRIPS_SUCCESS, GET_TRIPS_FAILURE
+} from './constants';
 
 import firebase from './initFirebase';
 import { cse } from '../../../../CREDENTIALS';
 
-// function* fetchTrips() {
-//     try {
-//         const docs = yield db.allDocs({include_docs: true});
+function* getTrips() {
+    try {
+        let docs = yield firebase.firestore().collection('trips').get();
+        let trips = [];
+        docs.forEach(doc => {
+            trips.push(doc.data());
+        });
 
-//         yield put({
-//             type: GET_ALL_TRIPS_SUCCEEDED,
-//             trips: docs.rows
-//         });
-//     } catch (e) {
-//         yield put({
-//             type: GET_ALL_TRIPS_FAILED,
-//             message: e.message
-//         });
-//     }
-// }
+        yield put({
+            type: GET_TRIPS_SUCCESS,
+            trips: trips
+        });
+    } catch (e) {
+        yield put({
+            type: GET_TRIPS_FAILURE,
+            message: e.message
+        });
+    }
+}
 
 function* addTrip(action) {
     try {
         let req = yield axios.get(`https://www.googleapis.com/customsearch/v1?key=${cse.apiKey}&cx=017756924603223828764:g8c3_0ujzpe&q=${action.trip.location}&searchType=image&imgColorType=color`);
         
-        let blobFile;
+        let fileURL;
         for (let i = 0; i < 10; i++) {
             try {
-                blobFile = yield axios({ method: 'get', url: req.data.items[i].link, responseType: 'blob' });
+                let blobFile = yield axios({ method: 'get', url: req.data.items[i].link, responseType: 'blob' });
+                let uploadTask = yield firebase.storage().ref().child(dateFns.format(new Date())).put(blobFile.data);
+                fileURL = yield uploadTask.ref.getDownloadURL();
                 break;
             } catch (err) {
-                console.log(err);
+                if (i === 9) fileURL = 'https://firebasestorage.googleapis.com/v0/b/qashagam.appspot.com/o/tripWP.png?alt=media&token=ace7418d-9f97-4832-ac0f-426002bf7b22';
             }
         }
-
-        let uploadTask = yield firebase.storage().ref().child(dateFns.format(new Date())).put(blobFile.data);
-        let fileURL = yield uploadTask.ref.getDownloadURL();
 
         yield firebase.firestore().collection('trips').add({
             ...action.trip,
@@ -59,6 +65,7 @@ function* addTrip(action) {
 
     yield delay(1200);
     yield put({ type: ADD_TRIP_CLEAR });
+    yield put({ type: GET_TRIPS });
     yield put({ type: DELETE_RESERVATION_DATES });    
 }
 
@@ -104,7 +111,7 @@ function* getFamily(action) {
 }
 
 function* mySaga() {
-    // yield takeLatest(GET_ALL_TRIPS, fetchTrips),
+    yield takeLatest(GET_TRIPS, getTrips),
     yield takeLatest(ADD_TRIP, addTrip),
     yield takeLatest(SIGN_UP, signUp);
     yield takeLatest(SIGN_IN, signIn);

@@ -10,8 +10,6 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 
-import tripWP from '../../../img/tripWP.png';
-
 const styles = theme => ({
     card: {
         '&:last-child': {
@@ -37,34 +35,34 @@ class TripHighlight extends React.Component {
 
         return (
             <Card>
-                <CardMedia title='photo' image={tripWP} className={classes.media} />
+                <CardMedia title='photo' image={trip.url} className={classes.media} />
 
                 <CardContent className={classes.card}>
-                    <Typography gutterBottom variant='display3'>
+                    <Typography gutterBottom variant='h5' style={{ display: 'flex', justifyContent: 'center', padding: '15px' }}>
                         Détail du voyage
                     </Typography>
                     <Grid container direction='column'>
                         <Grid item>
-                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Famille: </Typography>
-                            <Typography variant='display2' style={{ display: 'inline-block' }}> {trip.famille} </Typography>
+                            <Typography variant='subtitle2' style={{ display: 'inline-block', paddingRight: '6px' }}> Famille: </Typography>
+                            <Typography variant='body1' style={{ display: 'inline-block', textTransform: 'capitalize' }}> {trip.famille} </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Lieu: </Typography>
-                            <Typography variant='display2' style={{ display: 'inline-block' }}> {trip.lieu} </Typography>
+                            <Typography variant='subtitle2' style={{ display: 'inline-block', paddingRight: '6px' }}> Lieu: </Typography>
+                            <Typography variant='body1' style={{ display: 'inline-block', textTransform: 'capitalize' }}> {trip.location} </Typography>
                         </Grid>
                         
                         <Grid item>
-                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Début: </Typography>
-                            <Typography variant='display2' style={{ display: 'inline-block' }}> {dateFns.format(trip.startDate, 'MM/DD/YYYY')} </Typography>
+                            <Typography variant='subtitle2' style={{ display: 'inline-block', paddingRight: '6px' }}> Début: </Typography>
+                            <Typography variant='body1' style={{ display: 'inline-block' }}> {dateFns.format(trip.startDate, 'MM/DD/YYYY')} </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Fin: </Typography>
-                            <Typography variant='display2' style={{ display: 'inline-block' }}> {dateFns.format(trip.endDate, 'MM/DD/YYYY')} </Typography>
+                            <Typography variant='subtitle2' style={{ display: 'inline-block', paddingRight: '6px' }}> Fin: </Typography>
+                            <Typography variant='body1' style={{ display: 'inline-block' }}> {dateFns.format(trip.endDate, 'MM/DD/YYYY')} </Typography>
                         </Grid>
 
                         <Grid item>
-                            <Typography variant='body2' style={{ display: 'inline-block', paddingRight: '6px' }}> Détail: </Typography>
-                            <Typography variant='display2' style={{ display: 'inline-block' }}> {trip.detail} </Typography>
+                            <Typography variant='subtitle2' style={{ display: 'inline-block', paddingRight: '6px' }}> Détail: </Typography>
+                            <Typography variant='body1' style={{ display: 'inline-block', textTransform: 'capitalize' }}> {trip.detail} </Typography>
                         </Grid>
                     </Grid>
                     <CardActions>
