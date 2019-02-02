@@ -17,15 +17,6 @@ function Transition(props) {
 }
 
 class CalendarPage extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        props.firebaseAction.getTrips();
-    }
-
-    state = {
-        dialogOpen: false
-    }
     
     updateDates = (date) => {
         this.props.calendarAction.updateReservationDates(date);

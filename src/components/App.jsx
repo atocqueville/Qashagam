@@ -28,7 +28,8 @@ class App extends React.Component {
             if (user) {
                 this.props.firebaseAction.updateUser(true);
                 this.props.firebaseAction.getFamily(user);
-                this.props.history.push('/calendar/reservation');
+                this.props.firebaseAction.getTrips();
+                this.props.history.push('/calendar/trips');
                 this.setState({ loadingApp: false });
             } else {
                 this.props.firebaseAction.updateUser(false);
